@@ -4,12 +4,12 @@ This project fine-tunes any Qwen 14B base model using Unsloth and QLoRA with 4-b
 
 ## Features
 
-- ✅ **Unsloth Optimization**: 2x faster training with less memory usage
-- ✅ **QLoRA 4-bit Quantization**: Efficient training on consumer GPUs
-- ✅ **Alpaca Format Support**: Works with instruction/input/output/system format
-- ✅ **GGUF Export**: Multiple quantization methods for Ollama
-- ✅ **Tool Preservation**: Maintains original model's tool/function calling abilities
-- ✅ **Multiple Output Formats**: LoRA adapters, merged 16-bit, merged 4-bit, and GGUF
+- **Unsloth Optimization**: 2x faster training with less memory usage
+- **QLoRA 4-bit Quantization**: Efficient training on consumer GPUs
+- **Alpaca Format Support**: Works with instruction/input/output/system format
+- **GGUF Export**: Multiple quantization methods for Ollama
+- **Tool Preservation**: Maintains original model's tool/function calling abilities
+- **Multiple Output Formats**: LoRA adapters, merged 16-bit, merged 4-bit, and GGUF
 
 ## Requirements
 
@@ -49,29 +49,6 @@ The script expects a JSON file with Alpaca format:
 ```
 
 Your `dataset.json` is already in the correct format!
-
-## Configuration
-
-Edit the configuration section in `finetune_qwen14b_unsloth.py`:
-
-```python
-# Model Configuration
-MODEL_NAME = "Qwen/Qwen2.5-14B"  # Change to any Qwen 14B model
-MAX_SEQ_LENGTH = 2048
-LOAD_IN_4BIT = True
-
-# LoRA Configuration
-LORA_R = 16
-LORA_ALPHA = 16
-TARGET_MODULES = ["q_proj", "k_proj", "v_proj", "o_proj",
-                  "gate_proj", "up_proj", "down_proj"]
-
-# Training Configuration
-BATCH_SIZE = 2
-GRADIENT_ACCUMULATION_STEPS = 4
-NUM_TRAIN_EPOCHS = 3
-LEARNING_RATE = 2e-4
-```
 
 ## Usage
 
