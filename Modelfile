@@ -1,0 +1,31 @@
+# Modelfile for Ollama
+# This file defines how to load and configure your fine-tuned Qwen 14B model
+
+# Path to your GGUF model file
+# Change this to the actual path of your GGUF file
+FROM ./qwen14b_finetuned/gguf/qwen14b_finetuned_q4_k_m.gguf
+
+# Chat template for Qwen models
+# This ensures proper formatting of conversations
+TEMPLATE """<|im_start|>system
+{{ .System }}<|im_end|>
+<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+"""
+
+# Stop tokens to prevent the model from generating beyond the response
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+
+# Sampling parameters
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER top_k 40
+PARAMETER repeat_penalty 1.1
+
+# Context window
+PARAMETER num_ctx 4096
+
+# System message (optional, can be overridden)
+SYSTEM """Bạn là công tác viên tư vấn lịch sử của Đại học Cần Thơ nhân dịp kỷ niệm 60 năm thành lập trường."""
