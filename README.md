@@ -164,45 +164,15 @@ python convert.py ../qwen14b_finetuned/merged_16bit --outtype f16 --outfile qwen
 ./quantize qwen14b_finetuned_f16.gguf qwen14b_finetuned_q8_0.gguf q8_0
 ```
 
-## Advanced Usage
-
-### Resume Training
-
-To resume from a checkpoint:
-
-```python
-trainer = SFTTrainer(
-    # ... other arguments ...
-    resume_from_checkpoint=True  # Add this
-)
-```
-
-### Adjust Memory Usage
-
-If you run out of memory:
-
-1. **Reduce batch size:**
-```python
-BATCH_SIZE = 1
-GRADIENT_ACCUMULATION_STEPS = 8  # Keep effective batch size the same
-```
-
-2. **Reduce sequence length:**
-```python
-MAX_SEQ_LENGTH = 1024
-```
-
-3. **Enable gradient checkpointing:**
-```python
-# Already enabled by default with Unsloth
-use_gradient_checkpointing="unsloth"
-```
-
-### Use Different Qwen Models
+## Use Different Qwen Models
 
 The script works with any Qwen 14B model:
 
 ```python
+# Qwen 3
+MODEL_NAME = "Qwen/Qwen3-14B"
+MODEL_NAME = "Qwen/Qwen3-14B-Instruct"
+
 # Qwen 2.5
 MODEL_NAME = "Qwen/Qwen2.5-14B"
 MODEL_NAME = "Qwen/Qwen2.5-14B-Instruct"
@@ -211,9 +181,6 @@ MODEL_NAME = "Qwen/Qwen2.5-14B-Instruct"
 MODEL_NAME = "Qwen/Qwen2-14B"
 MODEL_NAME = "Qwen/Qwen2-14B-Instruct"
 
-# Qwen 1.5
-MODEL_NAME = "Qwen/Qwen1.5-14B"
-MODEL_NAME = "Qwen/Qwen1.5-14B-Chat"
 ```
 
 ## Preserving Tool Capabilities
@@ -320,10 +287,10 @@ If you use this project, please cite:
   url = {https://github.com/unslothai/unsloth}
 }
 
-@article{qwen2,
-  title={Qwen2 Technical Report},
+@article{qwen3,
+  title={Qwen3 Technical Report},
   author={Qwen Team},
-  year={2024}
+  year={2025}
 }
 ```
 
